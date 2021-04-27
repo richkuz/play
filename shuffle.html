@@ -28,20 +28,17 @@
         }
         const inputList = queryParams['input'] || 'one,two,three';
         const template = unraw(queryParams['template'] || '$ITEM,');
-        const inputArr = inputList.split(',');
-        const randArr = [];
-
-        function getRandomIntInclusive(min, max) {
-          return Math.floor(Math.random() * (max - min + 1) + min);
-        }
-
-        inputArr.forEach(item => {
-          const output = template.replace('$ITEM', item);
-          const pos = getRandomIntInclusive(0, randArr.length);
-          randArr.splice(pos, 0, output);
-        });
+        const inputArr = inputList.split(',').map(item => template.replace('$ITEM', item));
         
-        document.getElementById('output').value = randArr.join("");
+        function shuffleArray(arr) {
+          for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+          }
+        }
+        shuffleArray(inputArr);
+        
+        document.getElementById('output').value = inputArr.join("");
       </script>
 
   </body>
