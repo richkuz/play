@@ -7,24 +7,39 @@
     <meta name="author" content="Rich Kuzsma" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/shuffle.js"></script>
   </head>
 
   <body>
-    <form>
-      <label for="input">Input:</label>
-      <textarea name="input" id="input"></textarea>
+    Shuffle a CSV list.
+    <p>Usage: <code>shuffle.html?input=one,two,three&template=$ITEM\n</code>
+    <hr>
+    <textarea id="output" rows="50" cols="80">
+    </textarea>
+      <script>
+        const queryParamsString = window.location.search.substr(1);
+        const queryParams = queryParamsString.split('&').reduce((accumulator, singleQueryParam) => {
+          const [key, value] = singleQueryParam.split('=');
+          accumulator[key] = decodeURIComponent(value);
+          return accumulator;
+        }, {});
+        
+        const inputList = queryParams['input'] || 'one,two,three';
+        const template = queryParams['template'] || "$ITEM,";
+        const inputArr = inputList.split(',');
+        const randArr = [];
 
-      <label for="regex">Regex:</label>
-      <input name="regex" id="regex"></input>
-    
-      <label for="template">Template:</label>
-      <input name="template" id="template"></input>
-      
-      <button id="shuffle">Shuffle</button>
-  
-      <label for="output">Output:</label>
-      <textarea name="output" id="output"></textarea>
-    </form>
+        function getRandomIntInclusive(min, max) {
+          return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        inputArr.forEach(item => {
+          const output = template.replace('$ITEM', item);
+          const pos = getRandomIntInclusive(0, randArr.length);
+          randArr.splice(pos, 0, output);
+        });
+        
+        document.getElementById('output').innerText = randArr.join("");
+      </script>
+
   </body>
 </html>
