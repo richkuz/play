@@ -23,8 +23,12 @@
           return accumulator;
         }, {});
         
+        function unraw(str) {
+          // Half-baked opposite of String.raw
+          return str.replaceAll("\\n", "\n").replaceAll("\\t", "\t").replaceAll("\\\\", "\\");
+        }
         const inputList = queryParams['input'] || 'one,two,three';
-        const template = queryParams['template'] || "$ITEM,";
+        const template = unraw(queryParams['template'] || '$ITEM,');
         const inputArr = inputList.split(',');
         const randArr = [];
 
