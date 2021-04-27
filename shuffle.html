@@ -6,7 +6,6 @@
     <meta name="description" content="Simple list shuffler" />
     <meta name="author" content="Rich Kuzsma" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
@@ -42,7 +41,7 @@
           randArr.splice(pos, 0, output);
         });
         
-        document.getElementById('output').innerText = randArr.join("");
+        document.getElementById('output').value = randArr.join("");
       </script>
 
   </body>
