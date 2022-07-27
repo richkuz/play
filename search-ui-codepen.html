@@ -2,33 +2,42 @@
   <head>
     <script>
       function updateCodepenData() {
-        document.getElementById('data').value = {
-          js: JSON.stringify("alert('test');" + document.getElementById('title').value)
+        const title = document.getElementById('title').value;
+        const filterFields = document.getElementById('filterFields').value;
+        const sortFields = document.getElementById('sortFields').value;
+        const url = document.getElementById('url').value;
+        const thumbnail = document.getElementById('thumbnail').value;
+        const searchUIConfig = {
+          title: title,
+          filterFields: filterFields.split(','),
+          sortFields: sortFields.split(','),
+          url: url,
+          thumbnail: thumbnail,
+          connectionOptions: {
+            cloudId: "<cloudId>",
+            apiKey: "<apiKey>"
+          }
         }
+        const data = {
+          title: title,
+          js: ("config=" + JSON.stringify(searchUIConfig) + ";\n alert(config.title);")
+        }
+        document.getElementById('data').value = JSON.stringify(data);
+        console.log(document.getElementById('data').value);
       }
-      /*
-      {
-   title: “title”,
-   filterFields: [“colour”, “size”]
-   sortFields: [“price”],
-   connectionOptions: {
-      cloudId: “<cloudId>”,
-      apiKey: “<apiKey>”
-   }
-}*/
     </script>
   </head>
 
   <body>
     <h1>Search UI</h1>
       <form action="https://codepen.io/pen/define" method="POST" target="_blank">
-      <p>Title: <input type="text" id="title" value="My Title" onBlur="updateCodepenData();" /></p>
-      <p>Filter fields: ...TODO...</p>
-      <p>Sort fields: ...TODO...</p>
-      <p>URL field: ...TODO...</p>
-      <p>Thumbnail field: ...TODO...</p>
+      <p>Title: <input type="text" id="title" value="My Title" onBlur="updateCodepenData();" />
+      <p>Filter fields: <input type="text" id="filterFields" value="color,size" onBlur="updateCodepenData();"/>
+      <p>Sort fields: <input type="text" id="sortFields" value="price,rating" onBlur="updateCodepenData();"/>
+      <p>URL field: <input type="text" id="url" value="" onBlur="updateCodepenData();"/>
+      <p>Thumbnail field: <input type="text" id="thumbnail" value="" onBlur="updateCodepenData();"/>
       <input type="hidden" name="data" id="data"/>
-      <input type="submit" value="Generate Codepen"/>
+      <p><input type="submit" value="Generate Codepen" onClick="updateCodepenData();"/>
     </form>
   </body>
 </html>
