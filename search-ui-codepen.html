@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <script>
+      function updateCodepenData() {
+        document.getElementById('data').value = {
+          js: JSON.stringify("alert('test');" + document.getElementById('title').value)
+        }
+      }
+      /*
+      {
+   title: “title”,
+   filterFields: [“colour”, “size”]
+   sortFields: [“price”],
+   connectionOptions: {
+      cloudId: “<cloudId>”,
+      apiKey: “<apiKey>”
+   }
+}*/
+    </script>
+  </head>
+
+  <body>
+    <h1>Search UI</h1>
+      <form action="https://codepen.io/pen/define" method="POST" target="_blank">
+      <p>Title: <input type="text" id="title" value="My Title" onBlur="updateCodepenData();" /></p>
+      <p>Filter fields: ...TODO...</p>
+      <p>Sort fields: ...TODO...</p>
+      <p>URL field: ...TODO...</p>
+      <p>Thumbnail field: ...TODO...</p>
+      <input type="hidden" name="data" id="data"/>
+      <input type="submit" value="Generate Codepen"/>
+    </form>
+  </body>
+</html>
