@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-iframe Loader</title>
+</head>
+<body>
+
+<script>
+    function loadIframes() {
+        // Get URLs from user input
+        var url1 = prompt("Enter URL for iframe 1:");
+        var url2 = prompt("Enter URL for iframe 2:");
+        var url3 = prompt("Enter URL for iframe 3:");
+        var url4 = prompt("Enter URL for iframe 4:");
+
+        // Set iframe sources
+        document.getElementById("iframe1").src = url1;
+        document.getElementById("iframe2").src = url2;
+        document.getElementById("iframe3").src = url3;
+        document.getElementById("iframe4").src = url4;
+    }
+</script>
+
+<h1>Multi-iframe Loader</h1>
+
+<button onclick="loadIframes()">Load Iframes</button>
+
+<iframe id="iframe1" width="400" height="300" style="border: 1px solid black; margin: 10px;"></iframe>
+<iframe id="iframe2" width="400" height="300" style="border: 1px solid black; margin: 10px;"></iframe>
+<iframe id="iframe3" width="400" height="300" style="border: 1px solid black; margin: 10px;"></iframe>
+<iframe id="iframe4" width="400" height="300" style="border: 1px solid black; margin: 10px;"></iframe>
+
+</body>
+</html>
