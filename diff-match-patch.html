@@ -33,8 +33,7 @@ function launch() {
 }
 
 window.addEventListener('message', function(event) {
-  console.log("GOT A MESSAGE!");
-  console.dir(event);
+  console.log("GOT A MESSAGE! from " + event.origin + ", data=" + event.data);
   if (event.origin === 'https://docs.google.com/') {
     // Set the received value in local storage
     console.log("From Google!");
