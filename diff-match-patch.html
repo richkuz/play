@@ -28,6 +28,8 @@ function launch() {
     dmp.diff_cleanupEfficiency(d);
   }
   var ds = dmp.diff_prettyHtml(d);
+  // Strip paragraph characters
+  ds = ds.replace(/&para;/g, '');
   document.getElementById('outputdiv').innerHTML = ds;
   console.log('Time: ' + (ms_end - ms_start) / 1000 + 's');
 }
