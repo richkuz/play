@@ -106,6 +106,11 @@ not worth the overhead.  The larger the edit cost, the more aggressive the clean
 
 <HR>
   <p>Example URL usage: <tt>https://richkuz.github.io/play/diff-match-patch.html?str1=abc&str2=def</tt>
+  <p>Example postMessage usage:
+  <pre>
+    var targetWindow = window.open('https://richkuz.github.io/play/diff-match-patch.html');
+    targetWindow.postMessage({type: "diff-match-patch", str1: "abc", str2: "def"}, 'https://richkuz.github.io');
+  </pre>
 <HR>
 <p>Source: <a href="https://neil.fraser.name/software/diff_match_patch/demos/diff.html">https://neil.fraser.name/software/diff_match_patch/demos/diff.html</a>
 <p>See: <A HREF="https://github.com/google/diff-match-patch">https://github.com/google/diff-match-patch</A>
