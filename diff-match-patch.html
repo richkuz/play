@@ -32,6 +32,15 @@ function launch() {
   console.log('Time: ' + (ms_end - ms_start) / 1000 + 's');
 }
 
+window.addEventListener('message', function(event) {
+  console.log("GOT A MESSAGE!");
+  console.dir(event);
+  if (event.origin === 'https://docs.google.com/') {
+    // Set the received value in local storage
+    console.log("From Google!");
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
