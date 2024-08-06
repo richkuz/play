@@ -33,10 +33,10 @@ function launch() {
 }
 
 window.addEventListener('message', function(event) {
-  console.log("GOT A MESSAGE! from " + event.origin + ", data=" + event.data);
-  if (event.origin === 'https://docs.google.com/') {
-    // Set the received value in local storage
-    console.log("From Google!");
+  if (typeof event.data === 'string' && event.data.startsWith('diff-match-patch:')) {
+    console.log("GOT A MESSAGE! from " + event.origin + ", data=" + event.data);
+    // Extract the actual data after the prefix
+    const actualData = event.data.slice('diff-match-patch:'.length);
   }
 });
 
