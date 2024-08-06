@@ -7,14 +7,10 @@
 </HEAD>
 
 <BODY>
-Source: <a href="https://neil.fraser.name/software/diff_match_patch/demos/diff.html">https://neil.fraser.name/software/diff_match_patch/demos/diff.html</a>
 
-<H1>Diff, Match and Patch</H1>
-<H2>Demo of Diff</H2>
-
-<P>Diff takes two texts and finds the differences.  This implementation works on a character by character basis.
-The result of any diff may contain 'chaff', irrelevant small commonalities which complicate the output.
-A post-diff cleanup algorithm factors out these trivial commonalities.</P>
+<b>Diff, Match and Patch</b>
+<p>Source: <a href="https://neil.fraser.name/software/diff_match_patch/demos/diff.html">https://neil.fraser.name/software/diff_match_patch/demos/diff.html</a>
+<p>Usage: https://richkuz.github.io/play/diff-match-patch.html?str1=abc&str2=def
 
 <SCRIPT>
 var dmp = new diff_match_patch();
@@ -38,9 +34,25 @@ function launch() {
   var ds = dmp.diff_prettyHtml(d);
   document.getElementById('outputdiv').innerHTML = ds + '<BR>Time: ' + (ms_end - ms_start) / 1000 + 's';
 }
+window.document.onload = function(e) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const str1 = urlParams.get('str1');
+  const str2 = urlParams.get('str2');
+  if (str1) {
+    document.getElementById('text1').value = str1;
+    if (str2) {
+      document.getElementById('text2').value = str2;
+    }
+    launch();
+  }
+}
 </SCRIPT>
 
+<DIV ID="outputdiv"></DIV>
+  
 <FORM action="#" onsubmit="return false">
+
 <TABLE WIDTH="100%"><TR>
   <TD WIDTH="50%">
 <H3>Text Version 1:</H3>
@@ -78,10 +90,9 @@ not worth the overhead.  The larger the edit cost, the more aggressive the clean
 <DD>Raw output.</DD>
 </DL>
 
-<P><INPUT TYPE="button" onClick="launch()" VALUE="Compute Diff"></P>
+  <P><INPUT TYPE="button" onClick="launch()" VALUE="Compute Diff"></P>
 </FORM>
 
-<DIV ID="outputdiv"></DIV>
 
 <HR>
 Back to <A HREF="https://github.com/google/diff-match-patch">Diff, Match and Patch</A>
