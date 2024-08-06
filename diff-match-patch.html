@@ -33,10 +33,10 @@ function launch() {
 }
 
 window.addEventListener('message', function(event) {
-  if (typeof event.data === 'string' && event.data.startsWith('diff-match-patch:')) {
-    console.log("GOT A MESSAGE! from " + event.origin + ", data=" + event.data);
-    // Extract the actual data after the prefix
-    const actualData = event.data.slice('diff-match-patch:'.length);
+  if (event.data && event.data.type === 'diff-match-patch') {
+    console.log("Received a message: " + JSON.stringify(event.data));
+    document.getElementById('text1').value = event.data.str1;
+    document.getElementById('text2').value = event.data.str2;
   }
 });
 
