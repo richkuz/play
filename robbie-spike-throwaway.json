@@ -1,0 +1,9 @@
+{
+  "client_id": "https://richkuz.github.io/play/robbie-client-metadata.json",
+  "client_name": "Robbie Spike (throwaway)",
+  "client_uri": "https://richkuz.github.io/play/robbie-client-metadata.json",
+  "redirect_uris": ["http://localhost/callback", "http://127.0.0.1/callback"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none"
+}
